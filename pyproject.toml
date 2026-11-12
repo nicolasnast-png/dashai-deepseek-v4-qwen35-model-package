@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dashai-deepseek-v4-qwen35-model-package"
+version = "0.1.0"
+description = "DeepSeek-V4-Pro Qwen3.5 9B (GGUF IQ4_XS) text generation model for DashAI, with thinking mode disabled"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "nicolasnast-png" }]
+keywords = ["DashAI", "Model"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# No declared dependencies on purpose: the plugin runs inside DashAI, which already
+# ships llama-cpp-python, huggingface-hub and jinja2. Declaring them could make the
+# DashAI plugin installer try to build llama-cpp-python from source (e.g. the
+# PyInstaller bundle does not expose its llama_cpp distribution metadata).
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/nicolasnast-png/dashai-deepseek-v4-qwen35-model-package"
+Issues = "https://github.com/nicolasnast-png/dashai-deepseek-v4-qwen35-model-package/issues"
+Model = "https://huggingface.co/Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF"
+
+[project.entry-points."dashai.plugins"]
+DeepSeekV4ProQwen35_9B = "dashai_deepseek_v4_qwen35.model:DeepSeekV4ProQwen35_9B"
+
+[tool.setuptools]
+packages = ["dashai_deepseek_v4_qwen35"]
